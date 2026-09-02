@@ -29,4 +29,30 @@ function getDayType (day) {
     }
 }
 
-console.log(getDayType('Monday'))
+
+function validateUsername (userName) {
+    if (userName.length < 4) {
+        return "Too Short"
+    } else if (userName.split('').includes(' ')) {
+        return "No Space Allowed"
+    } else if (userName.toLowerCase().includes('admin')){
+        return "Reserved Word"
+    } else {
+        return "Available"
+    }
+    
+}
+
+
+function getCngFare(distance, isNight = false, waitingMinutes = 0) {
+    const waitingMinutesCharge = waitingMinutes * 2
+    let totalFare = 50 + waitingMinutesCharge;
+
+    if (distance > 2) {
+        totalFare = totalFare + ((distance - 2) * 15)
+    }
+
+    return isNight ? totalFare * (1 + 20 / 100) : totalFare
+}
+
+
